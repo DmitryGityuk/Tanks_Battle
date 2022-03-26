@@ -52,7 +52,9 @@ public class PlayerTank extends Tank {
      */
     public void update(float dt) {
         checkMovement(dt);
-        rotateTurretToPoint(gameScreen.getMousePosition().x, gameScreen.getMousePosition().y, dt);
+        float mx = Gdx.input.getX();
+        float my = Gdx.graphics.getHeight() - Gdx.input.getY();
+        rotateTurretToPoint(mx, my, dt);
         if (Gdx.input.isTouched()) {
             fire();
         }
