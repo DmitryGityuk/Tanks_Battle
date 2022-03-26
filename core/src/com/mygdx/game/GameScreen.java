@@ -88,10 +88,12 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        float dt = Gdx.graphics.getDeltaTime();
         update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        ScreenManager.getInstance().getCamera().position.set(playerTank.getPosition().x, playerTank.getPosition().y, 0);
+//        ScreenManager.getInstance().getCamera().update();
+        batch.setProjectionMatrix(ScreenManager.getInstance().getCamera().combined);
         batch.begin();
         map.render(batch);
         playerTank.render(batch);
@@ -155,8 +157,8 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void resize(int i, int i1) {
-
+    public void resize(int width, int height) {
+        ScreenManager.getInstance().resize(width, height);
     }
 
     @Override
