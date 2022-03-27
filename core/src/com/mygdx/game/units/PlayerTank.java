@@ -1,13 +1,13 @@
 package com.mygdx.game.units;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameScreen;
+import com.mygdx.game.Item;
 import com.mygdx.game.Weapon;
 import com.mygdx.game.utils.Direction;
 import com.mygdx.game.utils.KeysControl;
@@ -74,6 +74,20 @@ public class PlayerTank extends Tank {
 
         }
         super.update(dt);
+    }
+
+    public void consumePowerUp(Item item) {
+        switch (item.getType()) {
+            case MEDKIT:
+                hp += 4;
+                if (hp > hpMax) {
+                    hp = hpMax;
+                }
+                break;
+            case SHIELD:
+                addScore(1000);
+                break;
+        }
     }
 
     public void renderHUD(SpriteBatch batch, BitmapFont font24) {
