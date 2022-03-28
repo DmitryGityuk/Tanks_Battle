@@ -6,7 +6,6 @@ import com.mygdx.game.units.BotTank;
 
 public class BotEmitter {
     private BotTank[] bots;
-
     public BotTank[] getBots() {
         return bots;
     }

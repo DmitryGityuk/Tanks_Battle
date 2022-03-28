@@ -38,7 +38,7 @@ public class BotTank extends Tank {
         this.aiTimerTo = 3.0f;
         this.pursuitRadius = 300.0f;
         this.preferredDirection = Direction.UP;
-        this.circle = new Circle(position.x, position.y, (width + height) / 3);
+        this.circle = new Circle(position.x, position.y, (width + height) / 2);
     }
 
     public void update(float dt) {
@@ -50,7 +50,6 @@ public class BotTank extends Tank {
             angle = preferredDirection.getAngle();
         }
         move(preferredDirection, dt);
-
         PlayerTank preferredTarget = null;
         if (gameScreen.getPlayers().size() == 1) {
             preferredTarget = gameScreen.getPlayers().get(0);
@@ -96,6 +95,7 @@ public class BotTank extends Tank {
 
     @Override
     public void destroy() {
+        gameScreen.getItemsEmitter().generateRandomItem(position.x, position.y,3, 0.5f);
         active = false;
     }
 }
